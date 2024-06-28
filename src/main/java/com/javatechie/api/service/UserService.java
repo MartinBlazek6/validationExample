@@ -4,16 +4,18 @@ import com.javatechie.api.dto.UserRequest;
 import com.javatechie.api.entity.User;
 import com.javatechie.api.exception.UserNotFoundException;
 import com.javatechie.api.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class UserService {
 
-    @Autowired
-    private UserRepository repository;
+
+    private final UserRepository repository;
 
 
     public User saveUser(UserRequest userRequest) {

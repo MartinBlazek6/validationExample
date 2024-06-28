@@ -11,6 +11,8 @@ import javax.validation.constraints.*;
 @NoArgsConstructor
 public class UserRequest {
     @NotNull(message = "username shouldn't be null")
+    @NotBlank(message = "username shouldn't be blank")
+    @NotEmpty(message = "username shouldn't be empty")
     private String name;
     @Email(message = "invalid email address")
     private String email;
