@@ -8,7 +8,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Constraint(validatedBy = CustomValidator.class)
-public @interface ValidCustom {
+public @interface NotContainsNumbers {
     String message() default "String must not contain numbers";
 
     Class<?>[] groups() default {};

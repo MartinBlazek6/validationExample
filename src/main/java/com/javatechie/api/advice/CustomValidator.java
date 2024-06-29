@@ -3,10 +3,10 @@ package com.javatechie.api.advice;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class CustomValidator implements ConstraintValidator<ValidCustom, String> {
+public class CustomValidator implements ConstraintValidator<NotContainsNumbers, String> {
 
     @Override
-    public void initialize(ValidCustom constraintAnnotation) {
+    public void initialize(NotContainsNumbers constraintAnnotation) {
     }
 
     @Override

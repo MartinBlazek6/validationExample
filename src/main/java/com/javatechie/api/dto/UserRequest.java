@@ -1,7 +1,6 @@
 package com.javatechie.api.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.javatechie.api.advice.ValidCustom;
+import com.javatechie.api.advice.NotContainsNumbers;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -38,7 +37,7 @@ public class UserRequest {
     @NotNull
     @Pattern(regexp = "^(?=.*[A-Z]).{8,}$",
             message = "Password should contains at least one UpperCase and special character and should be at least 8 chars long")
-    @ValidCustom(message = "should not contain numbers")
+    @NotContainsNumbers(message = "should not contain numbers")
     private String password;
 
     @Past
