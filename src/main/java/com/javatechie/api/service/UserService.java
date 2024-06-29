@@ -1,6 +1,7 @@
 package com.javatechie.api.service;
 
 import com.javatechie.api.dto.UserRequest;
+import com.javatechie.api.dto.UserResponse;
 import com.javatechie.api.entity.User;
 import com.javatechie.api.exception.UserNotFoundException;
 import com.javatechie.api.repository.UserRepository;
@@ -16,13 +17,21 @@ public class UserService {
 
 
     private final UserRepository repository;
+    private final UserMapper userMapper;
 
 
-    public User saveUser(UserRequest userRequest) {
-        User user = User.
-                build(0, userRequest.getName(), userRequest.getEmail(),
-                        userRequest.getMobile(), userRequest.getGender(), userRequest.getAge(), userRequest.getNationality());
-        return repository.save(user);
+    public UserResponse saveUser(UserRequest userRequest) {
+//        User user = User.
+//                build(0, userRequest.getName(), userRequest.getEmail(),
+//                        userRequest.getMobile(), userRequest.getGender(), userRequest.getAge(), userRequest.getNationality());
+//
+        User user = userMapper.mapToUser(userRequest);
+        UserRequest userR = userMapper.mapToUserRequest(user);
+
+        user = repository.save(userMapper.mapToUser(userRequest));
+
+        return userMapper.mapToUserResponse(user);
+
     }
 
 

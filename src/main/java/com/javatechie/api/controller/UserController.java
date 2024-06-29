@@ -1,6 +1,7 @@
 package com.javatechie.api.controller;
 
 import com.javatechie.api.dto.UserRequest;
+import com.javatechie.api.dto.UserResponse;
 import com.javatechie.api.entity.User;
 import com.javatechie.api.exception.UserNotFoundException;
 import com.javatechie.api.service.UserService;
@@ -11,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @RestController
@@ -22,7 +25,7 @@ public class UserController {
     private final UserService service;
 
     @PostMapping("/signup")
-    public ResponseEntity<User> saveUser(@RequestBody @Valid UserRequest userRequest){
+    public ResponseEntity<UserResponse> saveUser(@RequestBody @Valid UserRequest userRequest){
         return new ResponseEntity<>(service.saveUser(userRequest), HttpStatus.CREATED);
     }
 
@@ -32,7 +35,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUser(@PathVariable int id) throws UserNotFoundException {
+    public ResponseEntity<User> getUser(@PathVariable @NotNull @NotEmpty int id) throws UserNotFoundException {
         return ResponseEntity.ok(service.getUser(id));
     }
 }
